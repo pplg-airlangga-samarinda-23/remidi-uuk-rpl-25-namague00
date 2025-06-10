@@ -16,7 +16,7 @@ if ($_SERVER ["REQUEST_METHOD"] === "GET") {
     $sql = "UPDATE kader SET nama=? , berat=?, tinggi=?, tanggal=? WHERE id=?";
     $row = $koneksi ->execute_query($sql,[$nama,$berat,$tinggi,$tanggal,$id]);
 
-    header("location:barang.php");
+    header("location:data.php");
 }
 
 ?>
