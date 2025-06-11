@@ -2,7 +2,7 @@
 
 require "koneksi.php";
 
-$sql = "SELECT * FROM kader";
+$sql = "SELECT * FROM bayi";
 $rows = $koneksi-> execute_query($sql,[]);
 
 ?>
@@ -26,8 +26,7 @@ $rows = $koneksi-> execute_query($sql,[]);
                     <tr>
                         <th>No</th>
                         <th>Nama </th>
-                        <th>berat</th>
-                        <th>tinggi</th>
+                        <th>ortu</th>
                         <th>tanggal lahir</th>
                         <th>aksi</th>
                     </tr>
@@ -40,12 +39,12 @@ $rows = $koneksi-> execute_query($sql,[]);
                     <tr>
                         <td><?php echo $no; ?></td>
                         <td><?php echo $item["nama"]; ?></td>
-                        <td><?php echo $item["berat"]; ?></td>
-                        <td><?php echo $item["tinggi"]; ?></td>
-                        <td><?php echo $item["tanggal"]; ?></td>
+                        <td><?php echo $item["ortu"]; ?></td>
+                        <td><?php echo $item["tanggal_lahir"]; ?></td>
                         <td> 
                             <a href="edit_data.php?id=<?=$item['id']?>>" class="btn-back">Edit</a>
                             <a href="hapus_data.php?id=<?=$item['id']?>>" class="btn-back">Hapus</a>
+                            <a href="catat.php?id=<?=$item['id']?>>" class="btn-back">detail</a>
                         </td>
                     </tr>
                         <?php

@@ -2,7 +2,7 @@
 
 require "koneksi.php";
 
-$sql = "SELECT username FROM admin";
+$sql = "SELECT username FROM kader";
 $rows = $koneksi-> execute_query($sql) -> fetch_all(MYSQLI_ASSOC);
 
 $no =0 ;

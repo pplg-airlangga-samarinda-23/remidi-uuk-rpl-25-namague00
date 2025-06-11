@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "$password";
 
 
-    $sql = "SELECT * FROM admin where username=? ";
+    $sql = "SELECT * FROM kader where username=? ";
     $row = $koneksi->execute_query($sql, [$username])->fetch_assoc();
 
     if ($row) {

@@ -41,7 +41,7 @@ if ($_SERVER ["REQUEST_METHOD"] === "GET") {
             <input type="number" name="tinggi" id="tinggi" value="<?= $row['tinggi']; ?>">
             <input type="date" name="tanggal" id="tanggal" value="<?= $row['tanggal']; ?>">
             <button type="submit" class="btn-submit">submit</button>
-            <a href="index.php" class="btn-submit">keluar</a>
+            <a href="data.php" class="btn-submit">keluar</a>
         </form>
     </div>
 </body>

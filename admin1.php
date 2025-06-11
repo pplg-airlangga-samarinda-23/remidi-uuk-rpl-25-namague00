@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST["username"];
     $password = md5($_POST["password"]);
 
-    $sql = "INSERT INTO admin(username,password)values (?,?)";
+    $sql = "INSERT INTO kader(username,password)values (?,?)";
     $row = $koneksi ->execute_query($sql,[$username,$password]);
 
     if ($row) {
