@@ -4,7 +4,7 @@ require 'koneksi.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
     $id = $_GET['id'];
-    $sql = "DELETE FROM kader WHERE id=?";
+    $sql = "DELETE FROM bayi WHERE id=?";
     $row = $koneksi -> execute_query($sql,[$id]);
 }
 

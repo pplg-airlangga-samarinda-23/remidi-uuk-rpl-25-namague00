@@ -4,17 +4,16 @@ require "koneksi.php";
 
 if ($_SERVER ["REQUEST_METHOD"] === "GET") {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM kader WHERE id=?";
+    $sql = "SELECT * FROM bayi WHERE id=?";
     $row = $koneksi -> execute_query($sql,[$id]) -> fetch_assoc();
 } elseif ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nama = $_POST["nama"];
-    $berat = $_POST["berat"];
-    $tinggi = $_POST["tinggi"];
-    $tanggal =$_POST["tanggal"];
+    $ortu = $_POST["ortu"];
+    $tanggal_lahir =$_POST["tanggal_lahir"];
     $id = $_GET["id"];
 
-    $sql = "UPDATE kader SET nama=? , berat=?, tinggi=?, tanggal=? WHERE id=?";
-    $row = $koneksi ->execute_query($sql,[$nama,$berat,$tinggi,$tanggal,$id]);
+    $sql = "UPDATE bayi SET nama=? , ortu=?, tanggal_lahir=? WHERE id=?";
+    $row = $koneksi ->execute_query($sql,[$nama,$ortu,$tanggal_lahir,$id]);
 
     header("location:data.php");
 }
@@ -37,9 +36,8 @@ if ($_SERVER ["REQUEST_METHOD"] === "GET") {
         <h2>masukkan data bayi</h2>
         <form action="" method="POST" class="pinjam-form">
             <input type="text" name="nama" id="nama" value="<?= $row['nama']; ?>">
-            <input type="number" name="berat" id="berat" value="<?= $row['berat']; ?>">
-            <input type="number" name="tinggi" id="tinggi" value="<?= $row['tinggi']; ?>">
-            <input type="date" name="tanggal" id="tanggal" value="<?= $row['tanggal']; ?>">
+            <input type="text" name="ortu" id="ortu" value="<?= $row['ortu']; ?>">
+            <input type="date" name="tanggal_lahir" id="tanggal_lahir" value="<?= $row['tanggal_lahir']; ?>">
             <button type="submit" class="btn-submit">submit</button>
             <a href="data.php" class="btn-submit">keluar</a>
         </form>
