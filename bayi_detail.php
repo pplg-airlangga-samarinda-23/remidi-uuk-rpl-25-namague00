@@ -1,13 +1,13 @@
-<?php
+<?php 
 
-require "koneksi.php";
+require 'koneksi.php';
 
-$sql = "SELECT * FROM bayi";
-$rows = $koneksi-> execute_query($sql,[]);
+$id_bayi = $_GET ['id'];
+$sql = "SELECT c.id, p.nama as kader, c.id_bayi, c.tinggi, c.berat,c.tanggal FROM catat c inner join pengguna p on c.id_kader = p.id_pengguna WHERE id_bayi=?
+ORDER BY id_bayi DESC";
+$details = $koneksi -> execute_query($sql,[$id_bayi])-> fetch_all(MYSQLI_ASSOC)
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +19,7 @@ $rows = $koneksi-> execute_query($sql,[]);
 </head>
 <body>
     <div class="manage-container">
-        <h2>Kelola data bayi</h2>
+        <h2>DATA CATATAN</h2>
         <div class="table-wrapper">
             <table>
                 <thead>
@@ -34,7 +34,7 @@ $rows = $koneksi-> execute_query($sql,[]);
                 <tbody>
                     <?php
                          $no = 1;
-                        foreach ($rows as $item) :
+                        foreach ($details as $detail) :
                     ?>
                     <tr>
                         <td><?php echo $no; ?></td>
@@ -44,8 +44,7 @@ $rows = $koneksi-> execute_query($sql,[]);
                         <td> 
                             <a href="edit_data.php?id=<?=$item['id']?>>" class="btn-back">Edit</a>
                             <a href="hapus_data.php?id=<?=$item['id']?>>" class="btn-back">Hapus</a>
-                            <a href="bayi_detail.php?id=<?=$item['id']?>>" class="btn-back">detail</a>
-
+                            <a href="catat.php?id=<?=$item['id']?>>" class="btn-back">detail</a>
                         </td>
                     </tr>
                         <?php
@@ -60,7 +59,6 @@ $rows = $koneksi-> execute_query($sql,[]);
         <div class="manage-actions">
             <a href="index.php" class="btn-back">Kembali</a>
             <a href="tambah_data.php" class="btn-back">Tambah</a>
-            <a href="catat.php" class="btn-back">catat pertumbuhan bayi</a>
         </div>
     </div>
 </body>
