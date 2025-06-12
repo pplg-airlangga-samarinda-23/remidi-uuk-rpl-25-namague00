@@ -2,10 +2,23 @@
 
 require 'koneksi.php';
 
-$id_bayi = $_GET ['id'];
-$sql = "SELECT c.id, p.nama as kader, c.id_bayi, c.tinggi, c.berat,c.tanggal FROM catat c inner join pengguna p on c.id_kader = p.id_pengguna WHERE id_bayi=?
-ORDER BY id_bayi DESC";
-$details = $koneksi -> execute_query($sql,[$id_bayi])-> fetch_all(MYSQLI_ASSOC)
+$id = $_GET['id_bayi'];
+
+$sql = "SELECT 
+        c.id, 
+        p.username AS kader, 
+        c.id_bayi2, 
+        c.tinggi, 
+        c.berat,
+        c.tanggal 
+        FROM catatan c 
+        INNER JOIN kader p ON c.id_kader2 = p.id_kader 
+        WHERE c.id_bayi2 = ? 
+        ORDER BY c.id DESC
+        ";
+
+
+$details = $koneksi->execute_query($sql, [$id])->fetch_all(MYSQLI_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -38,21 +51,19 @@ $details = $koneksi -> execute_query($sql,[$id_bayi])-> fetch_all(MYSQLI_ASSOC)
                     ?>
                     <tr>
                         <td><?php echo $no; ?></td>
-                        <td><?php echo $item["nama"]; ?></td>
-                        <td><?php echo $item["ortu"]; ?></td>
-                        <td><?php echo $item["tanggal_lahir"]; ?></td>
+                        <td><?php echo $detail["nama"]; ?></td>
+                        <td><?php echo $detail["ortu"]; ?></td>
+                        <td><?php echo $detail["tanggal_lahir"]; ?></td>
                         <td> 
-                            <a href="edit_data.php?id=<?=$item['id']?>>" class="btn-back">Edit</a>
-                            <a href="hapus_data.php?id=<?=$item['id']?>>" class="btn-back">Hapus</a>
-                            <a href="catat.php?id=<?=$item['id']?>>" class="btn-back">detail</a>
+                            <a href="edit_data.php?id_bayi=<?= $id ?>" class="btn-back">Edit</a>
+                            <a href="hapus_data.php?id_bayi=<?= $id ?>" class="btn-back">Hapus</a>
+                            <a href="catat.php?id_bayi=<?= $id ?>" class="btn-back">Tambah Detail</a>
                         </td>
                     </tr>
                         <?php
                             $no +=1;
                             endforeach;
                         ?>
-                        <?php foreach ($rows as $row) : ?>
-                        <?php endforeach ?>
                 </tbody>
             </table>
         </div>

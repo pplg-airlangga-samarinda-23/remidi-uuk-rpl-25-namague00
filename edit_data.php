@@ -1,23 +1,27 @@
 <?php 
-
 require "koneksi.php";
 
-if ($_SERVER ["REQUEST_METHOD"] === "GET") {
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM bayi WHERE id=?";
-    $row = $koneksi -> execute_query($sql,[$id]) -> fetch_assoc();
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    if (isset($_GET['id_bayi'])) {
+        $id = $_GET['id_bayi'];
+        $sql = "SELECT * FROM bayi WHERE id_bayi=?";
+        $row = $koneksi->execute_query($sql, [$id])->fetch_assoc();
+    } else {
+        echo "ID tidak ditemukan di URL.";
+        exit;
+    }
 } elseif ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nama = $_POST["nama"];
     $ortu = $_POST["ortu"];
-    $tanggal_lahir =$_POST["tanggal_lahir"];
-    $id = $_GET["id"];
+    $tanggal_lahir = $_POST["tanggal_lahir"];
+    $id = $_GET["id_bayi"];
 
-    $sql = "UPDATE bayi SET nama=? , ortu=?, tanggal_lahir=? WHERE id=?";
-    $row = $koneksi ->execute_query($sql,[$nama,$ortu,$tanggal_lahir,$id]);
+    $sql = "UPDATE bayi SET nama=?, ortu=?, tanggal_lahir=? WHERE id_bayi=?";
+    $row = $koneksi->execute_query($sql, [$nama, $ortu, $tanggal_lahir, $id]);
 
-    header("location:data.php");
+    header("Location: data.php");
+    exit;
 }
-
 ?>
 
 

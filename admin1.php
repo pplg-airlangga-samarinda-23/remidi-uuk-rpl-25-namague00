@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="text" name="username" placeholder="Username" >
             <input type="password" name="password" placeholder="Password">
             <button type="submit" name="login" class="btn-login">tambah</button>
-            <a href="index.php" class="btn-submit">keluar</a>
+            <a href="admin2.php" class="btn-submit">keluar</a>
         </form>
     </div>
     </form>

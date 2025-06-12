@@ -41,12 +41,13 @@ $rows = $koneksi-> execute_query($sql,[]);
                         <td><?php echo $item["nama"]; ?></td>
                         <td><?php echo $item["ortu"]; ?></td>
                         <td><?php echo $item["tanggal_lahir"]; ?></td>
-                        <td> 
-                            <a href="edit_data.php?id=<?=$item['id']?>>" class="btn-back">Edit</a>
-                            <a href="hapus_data.php?id=<?=$item['id']?>>" class="btn-back">Hapus</a>
-                            <a href="bayi_detail.php?id=<?=$item['id']?>>" class="btn-back">detail</a>
-
+                        <td>
+                            <a href="edit_data.php?id_bayi=<?= $item['id_bayi']; ?>" class="btn-back">Edit</a>
+                            <a href="hapus_data.php?id_bayi=<?= $item['id_bayi']; ?>" class="btn-back">Hapus</a>
+                            <a href="bayi_detail.php?id_bayi=<?= $item['id_bayi']; ?>" class="btn-back">Detail</a>
                         </td>
+
+
                     </tr>
                         <?php
                             $no +=1;

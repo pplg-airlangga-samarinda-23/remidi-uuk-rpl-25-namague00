@@ -12,11 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tinggi = $_POST['tinggi'];
     $berat = $_POST['berat'];
 
-    $sql = "INSERT INTO catat (id_kader, id_bayi, tinggi, berat, tanggal) VALUES (?,?,?,?,CURRENT_DATE)";
+    $sql = "INSERT INTO catatan (id_kader, id_bayi, tinggi, berat, tanggal) VALUES (?,?,?,?,CURRENT_DATE)";
     $row = $koneksi -> execute_query($sql, [$id_kader,$id_bayi,$tinggi,$berat]);
 
     if($row){
-        header("Location:catat.php");
+        header("Location:bayi_detail.php");
     }
 }
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="pinjam-container">
-        <h2>masukkan data bayi</h2>
+        <h2>masukkan detail bayi</h2>
         <form action="" method="POST" class="pinjam-form">
 
             <label for="bayi">bayi</label>
