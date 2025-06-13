@@ -1,25 +1,28 @@
 <?php 
 
+
 require 'koneksi.php';
 
+if (!isset($_GET['id_bayi'])) {
+    die("ID bayi tidak ditemukan di URL.");
+}
+
 $id = $_GET['id_bayi'];
+
+$sql_bayi = "SELECT * FROM bayi WHERE id_bayi = ?";
+$bayi = $koneksi->execute_query($sql_bayi, [$id])->fetch_assoc();
 
 $sql = "SELECT 
         c.id, 
         p.username AS kader, 
-        c.id_bayi2, 
         c.tinggi, 
         c.berat,
-        c.tanggal 
+        c.tannggal 
         FROM catatan c 
-        INNER JOIN kader p ON c.id_kader2 = p.id_kader 
-        WHERE c.id_bayi2 = ? 
-        ORDER BY c.id DESC
-        ";
-
-
+        INNER JOIN kader p ON c.id_kader = p.id_kader 
+        WHERE c.id_bayi = ? 
+        ORDER BY c.id DESC";
 $details = $koneksi->execute_query($sql, [$id])->fetch_all(MYSQLI_ASSOC);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,10 +41,10 @@ $details = $koneksi->execute_query($sql, [$id])->fetch_all(MYSQLI_ASSOC);
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama </th>
-                        <th>ortu</th>
-                        <th>tanggal lahir</th>
-                        <th>aksi</th>
+                        <th>tanggal </th>
+                        <th>tinggi</th>
+                        <th>berat</th>
+                        <th>kader</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,13 +54,14 @@ $details = $koneksi->execute_query($sql, [$id])->fetch_all(MYSQLI_ASSOC);
                     ?>
                     <tr>
                         <td><?php echo $no; ?></td>
-                        <td><?php echo $detail["nama"]; ?></td>
-                        <td><?php echo $detail["ortu"]; ?></td>
-                        <td><?php echo $detail["tanggal_lahir"]; ?></td>
+                        <td><?php echo $detail["tannggal"]; ?></td>
+                        <td><?php echo $detail["tinggi"]; ?></td>
+                        <td><?php echo $detail["berat"]; ?></td>
+                        <td><?php echo $detail["kader"]; ?></td>
                         <td> 
                             <a href="edit_data.php?id_bayi=<?= $id ?>" class="btn-back">Edit</a>
                             <a href="hapus_data.php?id_bayi=<?= $id ?>" class="btn-back">Hapus</a>
-                            <a href="catat.php?id_bayi=<?= $id ?>" class="btn-back">Tambah Detail</a>
+                            
                         </td>
                     </tr>
                         <?php
@@ -69,7 +73,7 @@ $details = $koneksi->execute_query($sql, [$id])->fetch_all(MYSQLI_ASSOC);
         </div>
         <div class="manage-actions">
             <a href="index.php" class="btn-back">Kembali</a>
-            <a href="tambah_data.php" class="btn-back">Tambah</a>
+            <a href="catat.php?id_bayi=<?= $id ?>" class="btn-back">Tambah Detail</a>
         </div>
     </div>
 </body>

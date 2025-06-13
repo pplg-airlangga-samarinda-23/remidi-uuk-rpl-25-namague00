@@ -1,24 +1,26 @@
 <?php
-
+session_start();
 require 'koneksi.php';
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
-    $password =  md5($_POST['password']);
-    echo "$password";
+    $password = $_POST['password']; // tanpa md5
 
+    // Ambil data kader berdasarkan username
+    $sql = "SELECT * FROM kader WHERE username = ?";
+    $stmt = $koneksi->execute_query($sql, [$username]);
+    $row = $stmt->fetch_assoc();
 
-    $sql = "SELECT * FROM kader where username=? ";
-    $row = $koneksi->execute_query($sql, [$username])->fetch_assoc();
-
-    if ($row) {
-        header("location:data.php");
+    if ($row && password_verify($password, $row['password'])) {
+        $_SESSION['id_kader'] = $row['id_kader'];
+        header("Location: data.php");
+        exit;
+    } else {
+        echo "<p style='color:red;'>❌ Login gagal. Username atau password salah.</p>";
     }
 }
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

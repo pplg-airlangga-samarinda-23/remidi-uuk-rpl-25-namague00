@@ -44,7 +44,7 @@ $rows = $koneksi-> execute_query($sql,[]);
                         <td>
                             <a href="edit_data.php?id_bayi=<?= $item['id_bayi']; ?>" class="btn-back">Edit</a>
                             <a href="hapus_data.php?id_bayi=<?= $item['id_bayi']; ?>" class="btn-back">Hapus</a>
-                            <a href="bayi_detail.php?id_bayi=<?= $item['id_bayi']; ?>" class="btn-back">Detail</a>
+                            <a href="bayi_detail.php?id_bayi=<?= $item['id_bayi']; ?>" class="btn-back">detail</a>
                         </td>
 
 

@@ -5,7 +5,7 @@ require 'koneksi.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") { 
     var_dump($_POST);
     $username = $_POST["username"];
-    $password = md5($_POST["password"]);
+    $password = password_hash($_POST["password"],PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO kader(username,password)values (?,?)";
     $row = $koneksi ->execute_query($sql,[$username,$password]);

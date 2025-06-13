@@ -31,14 +31,14 @@ $no =0 ;
         
         </thead>
         <tbody id="table-body">
-            <?php foreach($rows as $row) { ?>
+            <?php foreach($rows as $row) : ?>
 
             <tr>
                 <td><?= ++$no ?></td>
                 <td><?= $row['username'] ?></td>
             </tr>
 
-            <?php } ?>
+            <?php endforeach ?>
         </tbody>
     </table>
     </div>
